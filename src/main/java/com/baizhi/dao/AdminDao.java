@@ -1,6 +1,6 @@
 package com.baizhi.dao;
 
-import com.baizhi.entiey.Admin;
+import com.baizhi.entity.Admin;
 
 /**
  * Created by acer on 2018/10/23.

@@ -1,4 +1,4 @@
-package com.baizhi.entiey;
+package com.baizhi.entity;
 
 /**
  * Created by acer on 2018/10/23.
