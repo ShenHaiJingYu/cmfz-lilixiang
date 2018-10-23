@@ -17,21 +17,16 @@
 		$(function(){
 			//点击更换验证码：
 			$("#captchaImage").click(function(){//点击更换验证码
-				alert("自己做");
-			});
-			
-			//  form 表单提交
-			$("#loginForm").bind("submit",function(){
-				alert("自己做");
-				return false;
-			});
+                $("#captchaImage").attr("src","${pageContext.request.contextPath}/admin/Kaptcha?"+"date="+new Date());
+            });
+
 		});
 	</script>
 </head>
 <body>
 	
 		<div class="login">
-			<form id="loginForm" action="../back/index.html" method="post" >
+			<form id="loginForm" action="${pageContext.request.contextPath}/admin/login" method="post" >
 				
 				<table>
 					<tbody>
@@ -43,7 +38,7 @@
 								用户名:
 							</th>
 							<td>
-								<input type="text"  name="user.name" class="text" value="xxx" maxlength="20"/>
+								<input type="text"  name="name" class="text" maxlength="20"/>
 							</td>
 					  </tr>
 					  <tr>
@@ -51,7 +46,7 @@
 								密&nbsp;&nbsp;&nbsp;码:
 							</th>
 							<td>
-								<input type="password" name="user.password" class="text" value="xxx" maxlength="20" autocomplete="off"/>
+								<input type="password" name="password" class="text"  maxlength="20" autocomplete="off"/>
 							</td>
 					  </tr>
 					
@@ -59,8 +54,8 @@
 							<td>&nbsp;</td>
 							<th>验证码:</th>
 							<td>
-								<input type="text" id="enCode" name="enCode" class="text captcha" maxlength="4" autocomplete="off"/>
-								<img id="captchaImage" class="captchaImage" src="img/captcha.jpg" title="点击更换验证码"/>
+								<input type="text" id="enCode" name="parameter" class="text captcha" maxlength="4" autocomplete="off"/>
+								<img id="captchaImage" class="captchaImage" src="${pageContext.request.contextPath}/admin/Kaptcha" title="点击更换验证码"/>
 							</td>
 						</tr>					
 					<tr>
