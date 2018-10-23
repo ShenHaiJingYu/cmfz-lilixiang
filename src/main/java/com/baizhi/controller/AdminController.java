@@ -59,11 +59,12 @@ public class AdminController {
 
         if (!captchaId.equals(parameter)) {
             //错误的验证码
-            return "login";
+            return "redirect:/login.jsp";
         } else {
             Admin ad = adminService.login(admin);
             if(ad == null){
-                return "login";
+                httpServletRequest.getSession().setAttribute("admin",ad);
+                return "redirect:/login.jsp";
             }else {
                 return "/main/main";
             }
