@@ -12,6 +12,36 @@
 <script type="text/javascript" src="../js/easyui-lang-zh_CN.js"></script>
 <script type="text/javascript">
 	<!--菜单处理-->
+    $(function (){
+      $.ajax({
+          url:"${pageContext.request.contextPath}/menu/acc",
+          type:"post",
+          dataType:"JSON",
+          success:function(data){
+              $.each(data,function(index,first){
+                  var a = "";
+                  $.each(first.mm,function(index2,two){
+                      a+= "<div style='text-align: center'><a href='#' class='easyui-linkbutton' data-options=\"iconCls:'icon-search',plain:true\" onclick=\"addTabs('" + two.title + "','" + two.url + "','" + two.iconCls + "')\">" + two.title + "</a></div>";
+                      //a+="<div style='text-align: center'><a href='#' class='easyui-linkbutton' data-options=\"iconCls:'icon-search',plain:true\" onclick='xuanXiang('"+two.title+"','"+two.url+"','"+two.iconCls+"')'>"+two.title+"</a></div>";
+                  })
+                  console.log(a);
+                  $('#aa').accordion('add', {
+                      title: first.title,
+                      content:a,
+                      selected: false
+                  });
+              })
+          }
+      });
+    });
+	function addTabs(title,url,iconCls){
+        console.log(a);
+        $('#tt').tabs('add',{
+            title: title,
+            //iconCls:iconCls,
+            selected: false
+        });
+    }
 </script>
 
 </head>
@@ -25,16 +55,9 @@
     </div>   
        
     <div data-options="region:'west',title:'导航菜单',split:true" style="width:220px;">
-    	<div id="aa" class="easyui-accordion" data-options="fit:true">
+        <div id="aa" class="easyui-accordion" data-options="fit:true">
 
-            <c:forEach items="${requestScope.menuList}" var="men">
-                <div title="${men.title}" data-options="iconCls:'icon-save'" style="overflow:auto;padding:10px;">
-                    <c:forEach items="${men.mm}" var="lon">
-                        ${lon.title}<br>
-                    </c:forEach>
-                </div>
-            </c:forEach>
-		</div>  
+        </div>
     </div>   
     <div data-options="region:'center'">
     	<div id="tt" class="easyui-tabs" data-options="fit:true,narrow:true,pill:true">   
