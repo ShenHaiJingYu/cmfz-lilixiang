@@ -21,10 +21,9 @@
               $.each(data,function(index,first){
                   var a = "";
                   $.each(first.mm,function(index2,two){
-                      a+= "<div style='text-align: center'><a href='#' class='easyui-linkbutton' data-options=\"iconCls:'icon-search',plain:true\" onclick=\"addTabs('" + two.title + "','" + two.url + "','" + two.iconCls + "')\">" + two.title + "</a></div>";
+                      a+= "<div style='text-align: center'><a href='javascript:void(0)' class='easyui-linkbutton' data-options=\"iconCls:'icon-search',plain:true\" onclick=\"addTabs('" + two.title + "','" + two.url + "','" + two.iconCls + "')\">" + two.title + "</a></div>";
                       //a+="<div style='text-align: center'><a href='#' class='easyui-linkbutton' data-options=\"iconCls:'icon-search',plain:true\" onclick='xuanXiang('"+two.title+"','"+two.url+"','"+two.iconCls+"')'>"+two.title+"</a></div>";
                   })
-                  console.log(a);
                   $('#aa').accordion('add', {
                       title: first.title,
                       content:a,
@@ -35,12 +34,19 @@
       });
     });
 	function addTabs(title,url,iconCls){
-        console.log(a);
-        $('#tt').tabs('add',{
-            title: title,
-            //iconCls:iconCls,
-            selected: false
-        });
+        var b = $('#tt').tabs('exists',title);
+        if(b){
+            $('#tt').tabs('select',title);
+        }else{
+            $('#tt').tabs('add',{
+                title: title,
+                iconCls:iconCls,
+                closable:true,
+                href:"${pageContext.request.contextPath}/datagrid/"+url,
+                selected: true
+            });
+        }
+
     }
 </script>
 
