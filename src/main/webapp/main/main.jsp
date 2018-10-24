@@ -1,4 +1,5 @@
 ﻿<%@ page language="java" contentType="text/html; charset=utf-8" pageEncoding="utf-8"%>
+<%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
@@ -25,7 +26,14 @@
        
     <div data-options="region:'west',title:'导航菜单',split:true" style="width:220px;">
     	<div id="aa" class="easyui-accordion" data-options="fit:true">
-    		
+
+            <c:forEach items="${requestScope.menuList}" var="men">
+                <div title="${men.title}" data-options="iconCls:'icon-save'" style="overflow:auto;padding:10px;">
+                    <c:forEach items="${men.mm}" var="lon">
+                        ${lon.title}<br>
+                    </c:forEach>
+                </div>
+            </c:forEach>
 		</div>  
     </div>   
     <div data-options="region:'center'">

@@ -9,7 +9,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		<result column="parent_id" property="parent_id"/>
 		<result column="iconCls" property="iconCls"/>
 		<result column="url" property="url"/>
-		<collection property="mm" javaType="Menu">
+		<collection property="mm" javaType="java.util.List" ofType="Menu">
 			<result column="id2" property="id"/>
 			<result column="title2" property="title"/>
 			<result column="parent" property="parent_id"/>
@@ -17,7 +17,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 			<result column="url2" property="url"/>
 		</collection>
 	</resultMap>
-	<select id="queryAllbyaccordion" >
+	<select id="queryAllbyaccordion" resultMap="ppp">
 		SELECT * FROM (SELECT * FROM menu where parent_id is null)t1 LEFT JOIN (SELECT id id2,title title2,parent_id parent,iconCls iconCls2,url url2 FROM menu) t2 ON t1.id = t2.parent
 	</select>
 </mapper>

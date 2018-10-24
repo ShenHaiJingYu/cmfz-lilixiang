@@ -66,7 +66,7 @@ public class AdminController {
                 httpServletRequest.getSession().setAttribute("admin",ad);
                 return "redirect:/login.jsp";
             }else {
-                return "/main/main";
+                return "forward:/menu/acc";
             }
         }
     }
