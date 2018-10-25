@@ -24,13 +24,12 @@ public class BannerController {
     @RequestMapping("/queryAll")
     @ResponseBody
     public Map queryAll(int page, int rows) {
-        int start = (page - 1) * rows;
-        int count = page * rows;
-        List<Banner> list = bannerService.queryAll(start, count);
-        int total = bannerService.queryCount(start, count);
-        Map map = new HashMap();
-        map.put("rows", list);
-        map.put("total", total);
+        Map map = null;
+        try{
+            map = bannerService.queryAll(page,rows);
+        }catch (Exception e){
+            e.printStackTrace();
+        }
         return map;
     }
 

@@ -5,7 +5,9 @@ import com.baizhi.entity.Banner;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 /**
  * Created by acer on 2018/10/24.
@@ -16,9 +18,15 @@ public class BannerServiceImpl implements BannerService {
     private BannerDao bannerDao;
 
     @Override
-    public List<Banner> queryAll(int start,int count) {
-        List<Banner> list = bannerDao.queryAll(start,count);
-        return list;
+    public Map queryAll(int page,int rows) {
+        int start = (page - 1) * rows;
+        int count = page * rows;
+        List<Banner> list = bannerDao.queryAll(start, count);
+        int total = bannerDao.queryCount(start, count);
+        Map map = new HashMap();
+        map.put("rows", list);
+        map.put("total", total);
+        return map;
     }
 
     @Override
