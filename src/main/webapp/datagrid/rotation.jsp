@@ -103,10 +103,10 @@
 
 <div id="dd">
     <form id="ac" method="post" enctype="multipart/form-data" >
-        名字：<input id="tb" name="name" type="text"/><br>
-        图片：<input id = "to" type="file" name = "pic" ><br>
-        图片状态：<input type="radio" checked="checked" value="0" name="status" id="td"/> 显示 <input type="radio" name="status" value="1" id="te"/>不显示<br>
-        描述信息：<input type="text" name="description" id="tf"/><br>
+        名字：<input  name="name" type="text"/><br>
+        图片：<input  type="file" name = "pic" ><br>
+        图片状态：<input type="radio" checked="checked" value="0" name="status" /> 显示 <input type="radio" name="status" value="1" id="te"/>不显示<br>
+        描述信息：<input type="text" name="description" /><br>
         <a id="btn" href="#" onclick="doadd()">立即添加</a>
     </form>
 </div>

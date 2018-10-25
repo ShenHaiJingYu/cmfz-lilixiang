@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.baizhi.dao.AlbumDao">
+	<resultMap id="ppppp" type="Album">
+		<result column="id" property="id"/>
+		<result column="name" property="name"/>
+		<result column="coverImg" property="coverImg"/>
+		<result column="count" property="count"/>
+		<result column="score" property="score"/>
+		<result column="author" property="author"/>
+		<result column="broadCast" property="broadCast"/>
+		<result column="brief" property="brief"/>
+		<result column="publishDate" property="publishDate"/>
+		<collection property="children" javaType="java.util.List" ofType="Chapter">
+			<result column="cid" property="id"/>
+			<result column="cname" property="name"/>
+			<result column="curl" property="url"/>
+			<result column="cduration" property="duration"/>
+			<result column="album_id" property="album_id"/>
+		</collection>
+	</resultMap>
+	<select id="getAll" resultMap="ppppp">
+		SELECT * FROM album t1 left JOIN (SELECT id cid,name cname,url curl,size csize,duration cduration,album_id FROM chapter) t2 on t1.id=t2.album_id
+	</select>
+	<insert id="insert">
+		INSERT INTO album VALUES (0,#{name},#{coverImg},0,#{score},#{author},#{broadCast},#{brief},#{publishDate})
+	</insert>
+</mapper>

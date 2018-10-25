@@ -24,6 +24,7 @@
     <version>1.5.8.RELEASE</version>
   </parent>
   <dependencies>
+    <!--文件上传-->
     <dependency>
       <groupId>commons-io</groupId>
       <artifactId>commons-io</artifactId>
