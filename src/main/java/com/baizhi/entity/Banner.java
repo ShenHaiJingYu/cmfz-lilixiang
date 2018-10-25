@@ -1,5 +1,7 @@
 package com.baizhi.entity;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
+
 import java.util.Date;
 
 /**
@@ -10,18 +12,19 @@ public class Banner {
     private String name;
     private String url;
     private int status;
-    private Date createDate;
+    @JsonFormat(pattern="yyyy-MM-dd HH:mm:ss",timezone="GMT+8")
+    private Date creatDate;
     private String description;
 
     public Banner() {
     }
 
-    public Banner(int id, String name, String url, int status, Date createDate, String description) {
+    public Banner(int id, String name, String url, int status, Date creatDate, String description) {
         this.id = id;
         this.name = name;
         this.url = url;
         this.status = status;
-        this.createDate = createDate;
+        this.creatDate = creatDate;
         this.description = description;
     }
 
@@ -32,7 +35,7 @@ public class Banner {
                 ", name='" + name + '\'' +
                 ", url='" + url + '\'' +
                 ", status=" + status +
-                ", createDate=" + createDate +
+                ", creatDate=" + creatDate +
                 ", description='" + description + '\'' +
                 '}';
     }
@@ -69,12 +72,12 @@ public class Banner {
         this.status = status;
     }
 
-    public Date getCreateDate() {
-        return createDate;
+    public Date getCreatDate() {
+        return creatDate;
     }
 
-    public void setCreateDate(Date createDate) {
-        this.createDate = createDate;
+    public void setCreatDate(Date creatDate) {
+        this.creatDate = creatDate;
     }
 
     public String getDescription() {

@@ -10,6 +10,9 @@
 <script type="text/javascript" src="../js/jquery.min.js"></script>   
 <script type="text/javascript" src="../js/jquery.easyui.min.js"></script>  
 <script type="text/javascript" src="../js/easyui-lang-zh_CN.js"></script>
+<script type="text/javascript" src="../js/datagrid-detailview.js"></script>
+    <link rel="stylesheet" type="text/css" href="../themes/icon.css">
+    <script type="text/javascript" src="${pageContext.request.contextPath }/js/jquery.edatagrid.js"></script>
 <script type="text/javascript">
 	<!--菜单处理-->
     $(function (){
