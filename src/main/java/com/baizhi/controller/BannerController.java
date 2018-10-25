@@ -6,10 +6,10 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.multipart.MultipartFile;
 
+import javax.servlet.http.HttpServletRequest;
 import java.util.Date;
-import java.util.HashMap;
-import java.util.List;
 import java.util.Map;
 
 /**
@@ -35,11 +35,9 @@ public class BannerController {
 
     @RequestMapping("/insert")
     @ResponseBody
-    public boolean insertOne(Banner banner) {
+    public boolean insertOne(Banner banner, MultipartFile pic, HttpServletRequest request) {
         try {
-            Date date = new Date();
-            banner.setCreatDate(date);
-            bannerService.insertOne(banner);
+            bannerService.insertOne(banner,pic,request.getSession().getServletContext().getRealPath("/"));
         } catch (Exception e) {
             e.printStackTrace();
             return false;

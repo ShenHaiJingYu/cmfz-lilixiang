@@ -69,7 +69,7 @@
             view: detailview,
             detailFormatter: function (rowIndex, rowData) {
                 return '<table><tr>' +
-                    '<td rowspan=2 style="border:0"><img src="../img/' + rowData.url + '" style="height:50px;"></td>' +
+                    '<td rowspan=2 style="border:0"><img src="../pic/' + rowData.url + '" style="height:50px;"></td>' +
                     '<td style="border:0">' +
                     '<p>Attribute: ' + rowData.description + '</p>' +
                     '<p>Status: ' + rowData.status + '</p>' +
@@ -102,12 +102,10 @@
 <table id="tata"></table>
 
 <div id="dd">
-    <form id="ac">
+    <form id="ac" method="post" enctype="multipart/form-data" >
         名字：<input id="tb" name="name" type="text"/><br>
-        图片路径：<input type="text" name="url" id="tc"/><br>
-        图片状态：<input type="radio" checked="checked" value="0" name="status" id="td"/> 显示 <input type="radio"
-                                                                                               name="status" value="1"
-                                                                                               id="te"/>不显示<br>
+        图片：<input id = "to" type="file" name = "pic" ><br>
+        图片状态：<input type="radio" checked="checked" value="0" name="status" id="td"/> 显示 <input type="radio" name="status" value="1" id="te"/>不显示<br>
         描述信息：<input type="text" name="description" id="tf"/><br>
         <a id="btn" href="#" onclick="doadd()">立即添加</a>
     </form>

@@ -1,8 +1,8 @@
 package com.baizhi.service;
 
 import com.baizhi.entity.Banner;
+import org.springframework.web.multipart.MultipartFile;
 
-import java.util.List;
 import java.util.Map;
 
 /**
@@ -11,7 +11,7 @@ import java.util.Map;
 public interface BannerService {
     Map queryAll(int page, int rows);
     int queryCount(int start, int count);
-    void insertOne(Banner banner);
+    void insertOne(Banner banner, MultipartFile pic,String path);
     void delete(int id);
     void update(Banner banner);
 }

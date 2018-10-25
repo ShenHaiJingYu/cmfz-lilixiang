@@ -2,12 +2,13 @@ package com.baizhi.service;
 
 import com.baizhi.dao.BannerDao;
 import com.baizhi.entity.Banner;
+import org.apache.commons.io.FilenameUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.web.multipart.MultipartFile;
 
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
+import java.io.File;
+import java.util.*;
 
 /**
  * Created by acer on 2018/10/24.
@@ -36,8 +37,24 @@ public class BannerServiceImpl implements BannerService {
     }
 
     @Override
-    public void insertOne(Banner banner) {
-
+    public void insertOne(Banner banner, MultipartFile pic,String path) {
+        File file = new File(path+"pic");
+        if(!file.exists()){
+            file.mkdir();
+        }
+        //文件名
+        String fileName = pic.getOriginalFilename();
+        String uuid = UUID.randomUUID().toString();
+        String extension = FilenameUtils.getExtension(fileName);
+        String newName = uuid+"."+extension;
+        try{
+            pic.transferTo(new File(file,newName));
+        }catch (Exception e){
+            e.printStackTrace();
+        }
+        Date date = new Date();
+        banner.setUrl(newName);
+        banner.setCreatDate(date);
         bannerDao.insertOne(banner);
     }
 

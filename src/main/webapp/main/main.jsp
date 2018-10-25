@@ -25,7 +25,6 @@
                   var a = "";
                   $.each(first.mm,function(index2,two){
                       a+= "<div style='text-align: center'><a href='javascript:void(0)' class='easyui-linkbutton' data-options=\"iconCls:'icon-search',plain:true\" onclick=\"addTabs('" + two.title + "','" + two.url + "','" + two.iconCls + "')\">" + two.title + "</a></div>";
-                      //a+="<div style='text-align: center'><a href='#' class='easyui-linkbutton' data-options=\"iconCls:'icon-search',plain:true\" onclick='xuanXiang('"+two.title+"','"+two.url+"','"+two.iconCls+"')'>"+two.title+"</a></div>";
                   })
                   $('#aa').accordion('add', {
                       title: first.title,
