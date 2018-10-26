@@ -1,5 +1,6 @@
 package com.baizhi.service;
 
+import com.baizhi.dao.AlbumDao;
 import com.baizhi.dao.ChapterDao;
 import com.baizhi.entity.Chapter;
 import org.apache.commons.io.FilenameUtils;
@@ -18,6 +19,8 @@ import java.util.UUID;
 public class ChapterServiceImpl implements ChapterService {
     @Autowired
     private ChapterDao chapterDao;
+    @Autowired
+    private AlbumDao albumDao;
 
     @Override
     public void insert(Chapter chapter, MultipartFile mou, String path) {
@@ -39,8 +42,10 @@ public class ChapterServiceImpl implements ChapterService {
         String uid = UUID.randomUUID().toString();
         chapter.setId(uid);
         chapter.setSize(size);
+        chapter.setUrl(newName);
         chapter.setDuration("05:00");
         chapterDao.insert(chapter);
+        albumDao.updateCount(chapter.getAlbum_id());
     }
 
 }

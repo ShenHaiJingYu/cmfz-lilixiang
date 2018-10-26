@@ -2,6 +2,14 @@
 
 <script type="text/javascript">
     $(function (){
+        $('#yyy').dialog({
+            title: '专辑详情',
+            width: 400,
+            height: 300,
+            cache: false,
+            modal: true,
+            closed: true
+        });
         $('#lll').dialog({
             title: '专辑详情',
             width: 400,
@@ -11,7 +19,7 @@
             closed: true
         });
         $('#ppppp').dialog({
-            title: '专辑详情',
+            title: '添加章节',
             width: 400,
             height: 200,
             cache: false,
@@ -19,7 +27,7 @@
             closed: true
         });
         $('#ooo').dialog({
-            title: '专辑详情',
+            title: '添加专辑',
             width: 400,
             height: 200,
             cache: false,
@@ -36,6 +44,11 @@
             url:'${pageContext.request.contextPath}/album/getAll',
             idField:'id',
             treeField:'name',
+            onDblClickRow:function(row){
+                $("#b1").val(row.name);
+                $("#au").prop("src","${pageContext.request.contextPath}/miaoyin/"+row.url);
+                $('#yyy').dialog("open");
+            },
             columns:[[
                 {field:'name',title:'名字',width:180},
                 {field:'url',title:'下载路径',width:60,align:'right'},
@@ -85,7 +98,12 @@
                 iconCls: 'icon-edit',
                 text:'章节下载',
                 handler: function(){
-
+                    var row = $('#oo').treegrid("getSelected");
+                    if (row == null) {
+                        alert("请先选中专辑");
+                    }else{
+                        window.location="${pageContext.request.contextPath}/chapter/testDownload?fileName="+row.url;
+                    }
                 }
             }]
         });
@@ -107,7 +125,7 @@
         });
     }
     function goinsert() {
-        $("#aaa").form("submit", {
+        $("#bbb").form("submit", {
             url: "${pageContext.request.contextPath}/chapter/insert",
             success: function (data) {
                 if (data == "true") {
@@ -116,7 +134,7 @@
                     alert("添加失败");
                 }
                 //关闭修改对话框
-                $("#ooo").dialog("close");
+                $("#ppppp").dialog("close");
                 //刷新datagrid
                 $("#oo").treegrid("reload");
             }
@@ -144,17 +162,23 @@
         章节名字：<input name="name" type="text"/><br>
         音频文件：<input type="file" name = "mou" /><br>
         <input type="text" hidden="hidden" id = "iii" name = "album_id" ><br>
-        <a id="ccc" href="#" onclick="goinsert()"/>立即添加</a>
+        <a id="ccc" href="#" onclick="goinsert()">立即添加</a>
     </form>
 </div>
 <div id="lll">
     <form  method="post" action="" >
         <img id = "a1" width="50px" height="50px" /><br>
         专辑名：<input id = "a2"type="text" readonly="readonly"/><br>
-        转接数量：<input id = "a3"type="text" readonly="readonly"/><br>
+        章节数量：<input id = "a3"type="text" readonly="readonly"/><br>
         评分：<input id = "a4"type="text" readonly="readonly"/><br>
         作者：<input id = "a5"type="text" readonly="readonly"/><br>
         播音：<input id = "a6"type="text" readonly="readonly"/><br>
         上架日期：<input id = "a7"type="text" readonly="readonly"/><br>
     </form>
 </div>
+
+<div id="yyy">
+    章节名:<input id = "b1"type="text" readonly="readonly"/><br>
+    <audio id = "au" controls="controls" loop="loop" autoplay="autoplay"></audio>
+</div>
+

@@ -10,4 +10,5 @@ import java.util.List;
 public interface AlbumDao {
     List<Album> getAll();
     void insert(Album album);
+    void updateCount(int id);
 }
